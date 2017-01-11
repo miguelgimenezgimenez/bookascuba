@@ -20,7 +20,7 @@
     "bcrypt": "^1.0.2",
     "koa": "^1.2.4",
     "koa-body": "^1.6.0",
-    "koa-bodyparser": "^2.3.0",
+    "koa-bodyparser": "^3.2",
     "koa-passport": "^1.4.0",
     "koa-router": "^5.3.0",
     "koa-static": "^2.0.0",
