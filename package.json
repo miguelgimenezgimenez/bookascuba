@@ -1,0 +1,19 @@
+{
+  "name": "bookascuba",
+  "version": "1.0.0",
+  "description": "Scuba Diving Booking App",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/johnandblue/bookascuba.git"
+  },
+  "author": "JC",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/johnandblue/bookascuba/issues"
+  },
+  "homepage": "https://github.com/johnandblue/bookascuba#readme"
+}
