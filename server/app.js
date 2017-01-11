@@ -14,23 +14,32 @@ const router = require('./router.js');
 
 const BasicStrategy = require('passport-http').BasicStrategy;
 
-passport.use(new BasicStrategy(
-  function(username, password, done) {
-    User.findOne({ username: username }, function (err, user) {
-      if (err) { return done(err); }
-      if (!user) { return done(null, false); }
-      bcrypt.compare(a,b,function(){
-        if ok return done(null, user)
-        else done(null, false)
-      })
-    });
-  }
-));
 
 app.use(bodyParser());
 app.use(router.routes());
 // app.use(serve('../client'))
 app.use(passport.initialize());
+
+passport.use(new BasicStrategy(
+  function(username, password, done) {
+    User.findOne({ username: username }, function (err, user) {
+      if (err) {
+        console.log('in findOne err');
+        return done(err);
+      }
+      if (!user) {
+        console.log('in findOne !user');
+        return done(null, false);
+      }
+      if (bcrypt.compare(password, hash)) {
+        console.log('in ok bcrypt compare ');
+        return done(null, user)
+      }
+      console.log('in findOne incorrect password');
+      return done(null, false);
+    });
+  }
+));
 
 app.use(function* (next) {
    if (this.status === 404) this.body = notFound;
