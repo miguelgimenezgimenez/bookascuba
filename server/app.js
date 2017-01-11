@@ -17,7 +17,7 @@ const BasicStrategy = require('passport-http').BasicStrategy;
 
 app.use(bodyParser());
 app.use(router.routes());
-// app.use(serve('../client'))
+app.use(serve('../client'))
 app.use(passport.initialize());
 
 passport.use(new BasicStrategy(
@@ -42,7 +42,7 @@ passport.use(new BasicStrategy(
 ));
 
 app.use(function* (next) {
-   if (this.status === 404) this.body = notFound;
+   if (this.status === 404) this.body = 'ooopsss';
  });
 
 app.listen(port, hostname, () => {

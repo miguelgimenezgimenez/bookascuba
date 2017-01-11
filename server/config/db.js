@@ -39,5 +39,4 @@ User.sync({force: true}).then(function () {
   });
 });
 
-
 module.exports = sequelize
