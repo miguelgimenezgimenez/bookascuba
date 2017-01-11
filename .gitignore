@@ -31,4 +31,4 @@ private
 dist
 
 
-./database.sqlite
+database.sqlite
