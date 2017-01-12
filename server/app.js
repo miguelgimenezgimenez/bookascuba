@@ -8,20 +8,30 @@ const fs = require('fs');
 const serve = require('koa-static');
 const passport = require('koa-passport');
 
-const bodyParser = require('koa-body');
 const db = require('./config/db.js');
 const router = require('./router.js');
+var User = require('./config/db.js')
+
+app.use(serve('../client'))
+
+// body parser
+const bodyParser = require('koa-body');
+app.use(bodyParser())
+
+// Sessions
+var session = require('koa-session')
+app.keys = ['secret']
+
+app.use(function* (next) {
+  passport.initialize();
+  yield next;
+})
 
 const BasicStrategy = require('passport-http').BasicStrategy;
 
-
-app.use(bodyParser());
-app.use(router.routes());
-app.use(serve('../client'))
-app.use(passport.initialize());
-
 passport.use(new BasicStrategy(
   function(username, password, done) {
+    console.log('uername: ', username);
     User.findOne({ username: username }, function (err, user) {
       if (err) {
         console.log('in findOne err');
@@ -40,6 +50,12 @@ passport.use(new BasicStrategy(
     });
   }
 ));
+
+app.use(function* (next) {
+  console.log("body parsing: ", this.request.body);
+  yield passport.authenticate('basic');
+  console.log(this.request.user);
+})
 
 app.use(function* (next) {
    if (this.status === 404) this.body = 'ooopsss';

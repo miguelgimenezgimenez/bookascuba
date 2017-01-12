@@ -2,6 +2,7 @@ const Sequelize = require('sequelize')
 const bcrypt = require('bcrypt')
 const saltRounds = 10;
 
+
 // bcrypt.hash('bananas', saltRounds, (err, hash) => {
 //   console.log('hash: ', hash);
 // });
