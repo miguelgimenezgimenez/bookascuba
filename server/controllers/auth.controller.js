@@ -3,9 +3,8 @@ const bcrypt = require('bcrypt')
 const authController = {}
 
 authController.signIn = function *(next) {
-  console.log('this.request', this.request);
-  if(this.request.user) this.body = this.request.user
-  else this.status = 401
+  if(!this.user) this.status = 401
+  this.body = this.user
 }
 
 module.exports = authController;

@@ -4,14 +4,25 @@ const passport = require('koa-passport');
 
 // router.post('/signIn', controller.signIn);
 
-router.post('/signIn', function* (next) {
-  passport.authenticate('basic', { session: false });
-  yield next;
-},
-function* (next) {
-  // If this function gets called, authentication was successful.
-  // `req.user` contains the authenticated user.
-  this.body = this.request;
-});
+const basicAuth = function *(next) {
+  var ctx = this
+  yield passport.authenticate('basic', { session: false },
+    function * (err, user, info, status) {
+      delete user.password
+      ctx.user = user
+    }
+  ).call(this, next)
+  yield next
+}
+
+router
+.post(
+  '/sign-in',
+  basicAuth,
+  controller.signIn)
+
+// .post('/event',
+//   basicAuth,
+//   eventsController.create)
 
 module.exports = router;
