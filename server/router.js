@@ -1,5 +1,7 @@
 const router = require('koa-router')();
 const controller = require('./controllers/auth.controller.js')
+const eventsController = require('./controllers/eventsController.js')
+
 const passport = require('koa-passport');
 
 // router.post('/signIn', controller.signIn);
@@ -16,10 +18,9 @@ const basicAuth = function *(next) {
 }
 
 router
-.post(
-  '/sign-in',
-  basicAuth,
-  controller.signIn)
+  .post('/sign-in', basicAuth, controller.signIn)
+  .get('/events', eventsController.getEvents)
+
 
 // .post('/event',
 //   basicAuth,
