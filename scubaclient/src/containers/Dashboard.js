@@ -1,21 +1,28 @@
 import React from 'react';
 import { connect } from 'react-redux';
-
 import * as Actions from '../actions'
 import Event from '../components/Event'
-
+import NewEventForm from '../components/NewEventForm'
 
 const containerStyle = {
   margin: '0 auto',
   width: 960,
-  padding: 40
+  padding: 20,
+  display: 'flex'
 }
 
 class Dashboard extends React.Component {
   componentDidMount () {
     this.props.getEvents()
-    console.log('in componentDidMount: ', this.props.events);
   }
+
+createEvent(data) {
+  this.props.createEvent()
+}
+
+//
+// RENDERING
+//
 
   renderEvents () {
     console.log('in renderEvents: ', this.props);
@@ -29,7 +36,14 @@ class Dashboard extends React.Component {
 
   render() {
     return <div style={containerStyle}>
-      {this.renderEvents()}
+      <div style={{flex:0.5}}>
+        <div style={{flex:0.5, marginLeft: 20, padding: 20}}>
+          <NewEventForm
+            onCreate={(data) => this.createEvent()}
+          />
+        </div>
+        {this.renderEvents()}
+      </div>
     </div>
   }
 }

@@ -8,14 +8,15 @@ export const getEvents = () => ({
   })
 
 
-// export const createEvent = (title, date) => ({
-//   type: 'CREATE_EVENT',
-//   [CALL_API]: {
-//     endpoint: '/events',
-//     method: 'POST',
-//     data: {
-//       title,
-//       date
-//     }
-//   }
-// })
+export const createEvent = (title, date, detail) => ({
+  type: 'CREATE_EVENT',
+  [CALL_API]: {
+    endpoint: '/events',
+    method: 'POST',
+    data: {
+      title,
+      date,
+      detail
+    }
+  }
+})
