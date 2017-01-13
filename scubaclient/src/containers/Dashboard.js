@@ -40,6 +40,7 @@ createEvent(data) {
         <div style={{flex:0.5, marginLeft: 20, padding: 20}}>
           <NewEventForm
             onCreate={(data) => this.createEvent(data)}
+            deleteAll={() => this.props.deleteAll()}
           />
         </div>
         {this.renderEvents()}
@@ -54,7 +55,8 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   getEvents: () => dispatch(Actions.getEvents()),
-  createEvent: (title, details, date, time) => dispatch(Actions.createEvent(title, details, date, time))
+  createEvent: (title, details, date, time) => dispatch(Actions.createEvent(title, details, date, time)),
+  deleteAll: () => dispatch(Actions.deleteAll())
 })
 
 export default connect(

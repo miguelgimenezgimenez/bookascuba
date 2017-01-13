@@ -21,5 +21,23 @@ export const createEvent = (title, details, date, time) => ({
     },
   },
   success: getEvents
+})
 
+export const deleteAll = (data) => ({
+  type: 'DELETE_ALL',
+  [CALL_API]: {
+    method: 'DELETE',
+    endpoint: '/deleteAll'
+  },
+  success: getEvents
+})
+
+export const deleteEvent = (data) => ({
+  type: 'DELETE_EVENT',
+  [CALL_API]: {
+    method: 'DELETE',
+    endpoint: '/events',
+    data: data.id
+  },
+  success: getEvents
 })

@@ -59,7 +59,6 @@ export default store => next => action => {
         type: type + '_SUCCESS'
       }))
       if (action.success) {
-        console.log(action.success);
         store.dispatch(action.success())
 
       }

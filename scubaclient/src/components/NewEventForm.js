@@ -13,6 +13,7 @@ const NewEventFormStyle={
 }
 
 const style = {
+  marginRight: 15,
   marginTop: 12,
 };
 
@@ -25,17 +26,20 @@ class NewEventForm extends Component {
     time: ""
   }
 
-  submit() {
+  submitAdd() {
     const {title, details, date, time} = this.state;
     const data = {title, details, date, time}
-
     this.props.onCreate(data)
+  }
+
+  submitDelete() {
+    this.props.deleteAll()
   }
 
   render() {
     return <div>
       <Card style={NewEventFormStyle}>
-        <h2>New Dive</h2>
+        <h2>Dive Manager</h2>
           <TextField
             hintText="Write the title"
             floatingLabelText="Dive Title"
@@ -59,7 +63,12 @@ class NewEventForm extends Component {
           <RaisedButton label="Add Dive"
           primary={true}
           style={style}
-          onTouchTap={() => this.submit()}
+          onTouchTap={() => this.submitAdd()}
+          />
+          <RaisedButton label="Delete All"
+          primary={true}
+          style={style}
+          onTouchTap={() => this.submitDelete()}
           />
         </div>
       </Card>
@@ -68,7 +77,8 @@ class NewEventForm extends Component {
 }
 
 NewEventForm.propTypes = {
-  onCreate: React.PropTypes.func.isRequired
+  onCreate: React.PropTypes.func.isRequired,
+  deleteAll: React.PropTypes.func.isRequired
 }
 
 export default NewEventForm

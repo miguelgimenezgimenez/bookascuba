@@ -18,4 +18,18 @@ eventsController.postEvent = function * (next) {
   this.status = 201
 }
 
+eventsController.dropDb = function * (next) {
+  this.body = yield Event.destroy({where:{}});
+  this.status = 200
+}
+
+eventsController.deleteEvent = function * (next) {
+  this.body = yield Event.destroy({
+    where:{
+      id: eventData.id
+    }
+  });
+  this.status = 200
+}
+
 module.exports = eventsController;

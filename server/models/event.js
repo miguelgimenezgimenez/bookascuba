@@ -20,14 +20,14 @@ var Event = sequelize.define('event', {
   freezeTableName: true // Model tableName will be the same as the model name
 });
 
-Event.sync().then(function () {
-  // Table created
-  return Event.create({
-    title: 'Los cubos',
-    details: 'Cubitos de la playa',
-    date: '2017-01-20 12:00:00.000 +00:00',
-    time: '2017-01-20 11:00:00.000 +00:00'
-    });
-});
+// Event.sync().then(function () {
+//   // Table created
+//   return Event.create({
+//     title: 'Los cubos',
+//     details: 'Cubitos de la playa',
+//     date: '2017-01-20 12:00:00.000 +00:00',
+//     time: '2017-01-20 11:00:00.000 +00:00'
+//     });
+// });
 
 module.exports = Event

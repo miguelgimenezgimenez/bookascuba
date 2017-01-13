@@ -18,9 +18,13 @@ function reducer (state = defaultState, action) {
       return Object.assign({}, state, {loading: true})
       break;
     case 'CREATE_EVENT_FAILURE':
-
       return Object.assign({}, state)
       break;
+    case 'DELETE_ALL_REQUEST':
+    case 'DELETE_ALL_SUCCESS':
+    return Object.assign({}, state, {loading: true})
+    break;
+
     default:
 
   }

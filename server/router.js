@@ -21,6 +21,7 @@ router
   .post('/sign-in', basicAuth, controller.signIn)
   .get('/events', eventsController.getEvents)
   .post('/events', eventsController.postEvent)
+  .delete('/deleteAll', eventsController.dropDb)
 
 
 // .post('/event',
