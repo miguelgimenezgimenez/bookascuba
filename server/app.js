@@ -1,6 +1,6 @@
 'use strict'
 
-const hostname = '127.0.0.1';
+const hostname = 'localhost';
 const port = 3001;
 
 const app = require('koa')();
@@ -8,12 +8,15 @@ const fs = require('fs');
 const serve = require('koa-static');
 const passport = require('koa-passport');
 const bcrypt = require('bcrypt')
+const cors = require('koa-cors');
 
 const db = require('./config/db.js');
 const router = require('./router.js');
 var User = require('./models/user.js')
 
 app.use(serve('../client'))
+app.use(cors());
+
 
 // body parser
 const bodyParser = require('koa-body');

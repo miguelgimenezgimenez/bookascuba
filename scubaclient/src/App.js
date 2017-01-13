@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import Dashboard from './containers/Dashboard';
 import AppBar from 'material-ui/AppBar';
 
 class App extends Component {
@@ -9,7 +10,7 @@ class App extends Component {
         <AppBar
           title="Scuba Events"
         />
-      
+        <Dashboard />
       </div>
     );
   }
