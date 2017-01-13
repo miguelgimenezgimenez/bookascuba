@@ -1,8 +1,10 @@
 const defaultState = {
-  events: []
+  events: [],
+  loading: false
 }
 
 function reducer (state = defaultState, action) {
+
   switch (action.type) {
     case 'GET_EVENTS_REQUEST':
     case 'CREATE_EVENT_REQUEST':
@@ -13,7 +15,10 @@ function reducer (state = defaultState, action) {
       break;
     case 'GET_EVENTS_FAILURE':
     case 'CREATE_EVENT_SUCCESS':
+      return Object.assign({}, state, {loading: true})
+      break;
     case 'CREATE_EVENT_FAILURE':
+
       return Object.assign({}, state)
       break;
     default:

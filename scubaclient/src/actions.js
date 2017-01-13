@@ -18,6 +18,8 @@ export const createEvent = (title, details, date, time) => ({
       details,
       date,
       time
-    }
-  }
+    },
+  },
+  success: getEvents
+
 })

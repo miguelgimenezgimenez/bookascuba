@@ -53,10 +53,17 @@ export default store => next => action => {
 
   return callApi(endpoint, method, data)
     .then(
-      response => next(actionWith({
+      response => {
+        next(actionWith({
         response,
         type: type + '_SUCCESS'
       }))
+      if (action.success) {
+        console.log(action.success);
+        store.dispatch(action.success())
+
+      }
+    }
     )
     .catch(
       error => next(actionWith({

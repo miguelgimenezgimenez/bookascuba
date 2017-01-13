@@ -20,6 +20,7 @@ const basicAuth = function *(next) {
 router
   .post('/sign-in', basicAuth, controller.signIn)
   .get('/events', eventsController.getEvents)
+  .post('/events', eventsController.postEvent)
 
 
 // .post('/event',

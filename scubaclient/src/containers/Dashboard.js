@@ -17,7 +17,8 @@ class Dashboard extends React.Component {
   }
 
 createEvent(data) {
-  console.log('Event created: ', data);
+  const {title, details, date, time} = data
+  this.props.createEvent(title, details, date, time)
 }
 
 //
@@ -25,7 +26,6 @@ createEvent(data) {
 //
 
   renderEvents () {
-    console.log('in renderEvents: ', this.props);
       return this.props.events.map(event =>
         <Event
           key={event.id}
@@ -53,7 +53,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = (dispatch) => ({
-  getEvents: () => dispatch(Actions.getEvents())
+  getEvents: () => dispatch(Actions.getEvents()),
+  createEvent: (title, details, date, time) => dispatch(Actions.createEvent(title, details, date, time))
 })
 
 export default connect(
