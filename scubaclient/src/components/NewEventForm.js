@@ -17,10 +17,19 @@ const style = {
 };
 
 class NewEventForm extends Component {
+
+  state = {
+    title: "",
+    details: "",
+    date: "",
+    time: ""
+  }
+
   submit() {
-    const data = {}
+    const {title, details, date, time} = this.state;
+    const data = {title, details, date, time}
 
-
+    this.props.onCreate(data)
   }
 
   render() {
@@ -30,18 +39,27 @@ class NewEventForm extends Component {
           <TextField
             hintText="Write the title"
             floatingLabelText="Dive Title"
+            onChange={(event, title) => this.setState({title})}
           /><br />
           <TextField
             hintText="Write the details"
             floatingLabelText="Dive Details"
+            onChange={(event, details) => this.setState({details})}
           /><br />
-        <DatePicker hintText="Select Date" />
+        <DatePicker
+          hintText="Select Date"
+          onChange={(event, date) => this.setState({date})}
+        />
         <TimePicker
           hintText="Select Time"
           autoOk={true}
+          onChange={(event, time) => this.setState({time})}
         />
         <div>
-          <RaisedButton label="Add Dive" primary={true} style={style}
+          <RaisedButton label="Add Dive"
+          primary={true}
+          style={style}
+          onTouchTap={() => this.submit()}
           />
         </div>
       </Card>

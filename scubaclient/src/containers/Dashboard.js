@@ -17,7 +17,7 @@ class Dashboard extends React.Component {
   }
 
 createEvent(data) {
-  this.props.createEvent()
+  console.log('Event created: ', data);
 }
 
 //
@@ -39,7 +39,7 @@ createEvent(data) {
       <div style={{flex:0.5}}>
         <div style={{flex:0.5, marginLeft: 20, padding: 20}}>
           <NewEventForm
-            onCreate={(data) => this.createEvent()}
+            onCreate={(data) => this.createEvent(data)}
           />
         </div>
         {this.renderEvents()}

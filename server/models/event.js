@@ -7,11 +7,14 @@ var Event = sequelize.define('event', {
   title: {
     type: Sequelize.STRING,
   },
+  details: {
+    type: Sequelize.STRING,
+  },
   date: {
     type: Sequelize.DATE
   },
-  detail: {
-    type: Sequelize.STRING,
+  time: {
+    type: Sequelize.DATE
   }
 }, {
   freezeTableName: true // Model tableName will be the same as the model name
@@ -20,9 +23,10 @@ var Event = sequelize.define('event', {
 Event.sync().then(function () {
   // Table created
   return Event.create({
-    title: 'La moderneta',
-    date: '2017-01-13 10:53:59.932 +00:00',
-    detail: 'Un buceito en Barcelona'
+    title: 'Los cubos',
+    details: 'Cubitos de la playa',
+    date: '2017-01-20 12:00:00.000 +00:00',
+    time: '2017-01-20 11:00:00.000 +00:00'
     });
 });
 

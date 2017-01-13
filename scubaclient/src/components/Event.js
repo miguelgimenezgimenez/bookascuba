@@ -24,7 +24,7 @@ export default class Event extends React.Component {
           <FlatButton label="Delete" />
         </CardActions>
         <CardText expandable={true}>
-          {this.props.event.detail}
+          {this.props.event.details}
         </CardText>
       </Card>
     )
