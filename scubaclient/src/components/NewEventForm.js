@@ -32,7 +32,7 @@ class NewEventForm extends Component {
     this.props.onCreate(data)
   }
 
-  submitDelete() {
+  submitDeleteAll() {
     this.props.deleteAll()
   }
 
@@ -68,7 +68,7 @@ class NewEventForm extends Component {
           <RaisedButton label="Delete All"
           primary={true}
           style={style}
-          onTouchTap={() => this.submitDelete()}
+          onTouchTap={() => this.submitDeleteAll()}
           />
         </div>
       </Card>

@@ -32,12 +32,11 @@ export const deleteAll = (data) => ({
   success: getEvents
 })
 
-export const deleteEvent = (data) => ({
+export const deleteEvent = (id) => ({
   type: 'DELETE_EVENT',
   [CALL_API]: {
     method: 'DELETE',
-    endpoint: '/events',
-    data: data.id
+    endpoint: '/events/'+id
   },
   success: getEvents
 })

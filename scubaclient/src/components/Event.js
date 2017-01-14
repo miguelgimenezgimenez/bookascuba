@@ -9,6 +9,7 @@ const eventStyle={
   marginBottom: 15,
 }
 
+
 export default class Event extends React.Component {
   render() {
     return (
@@ -20,8 +21,10 @@ export default class Event extends React.Component {
           showExpandableButton={true}
         />
         <CardActions>
-          <FlatButton label="Modify" />
+          <FlatButton label="Modify"
+          />
           <FlatButton label="Delete"
+            onTouchTap={() => this.props.onDelete(this.props.event.id)}
           />
         </CardActions>
         <CardText expandable={true}>
@@ -33,5 +36,6 @@ export default class Event extends React.Component {
 }
 
 Event.propTypes = {
-  event: React.PropTypes.object.isRequired
+  event: React.PropTypes.object.isRequired,
+  onDelete: React.PropTypes.func.isRequired
 }

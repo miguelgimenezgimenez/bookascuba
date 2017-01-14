@@ -26,10 +26,12 @@ createEvent(data) {
 //
 
   renderEvents () {
+    console.log(this.props.events);
       return this.props.events.map(event =>
         <Event
           key={event.id}
           event={event}
+          onDelete={(id) => this.props.deleteEvent(id)}
         />
       )
     }
@@ -56,7 +58,8 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   getEvents: () => dispatch(Actions.getEvents()),
   createEvent: (title, details, date, time) => dispatch(Actions.createEvent(title, details, date, time)),
-  deleteAll: () => dispatch(Actions.deleteAll())
+  deleteAll: () => dispatch(Actions.deleteAll()),
+  deleteEvent: (id) => dispatch(Actions.deleteEvent(id))
 })
 
 export default connect(

@@ -24,12 +24,33 @@ eventsController.dropDb = function * (next) {
 }
 
 eventsController.deleteEvent = function * (next) {
+  var eventData = this.request.body;
+  console.log(eventData);
   this.body = yield Event.destroy({
     where:{
-      id: eventData.id
+      id: this.params.id
     }
   });
   this.status = 200
+}
+
+eventsController.updateEvent = function * (next) {
+  var eventData = this.request.body;
+  this.body = yield Event.update(
+    {
+      title: eventData.title,
+      details: eventData.details,
+      date: eventData.date,
+      time: eventData.time
+    },
+    {
+      id: eventData.id
+    }
+  ).then(function(){
+    console.log('Update Success');
+  }).catch(function(e) {
+    console.log('Update Failure');
+  })
 }
 
 module.exports = eventsController;

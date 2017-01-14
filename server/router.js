@@ -22,6 +22,8 @@ router
   .get('/events', eventsController.getEvents)
   .post('/events', eventsController.postEvent)
   .delete('/deleteAll', eventsController.dropDb)
+  .delete('/events/:id', eventsController.deleteEvent)
+  .put('/events', eventsController.updateEvent)
 
 
 // .post('/event',
