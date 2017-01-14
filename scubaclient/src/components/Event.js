@@ -1,7 +1,7 @@
 import React from 'react'
 import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card'
 import FlatButton from 'material-ui/FlatButton';
-
+import Moment from 'moment'
 
 const eventStyle={
   padding: 40,
@@ -16,13 +16,15 @@ export default class Event extends React.Component {
       <Card style={eventStyle}>
         <CardHeader
           title={this.props.event.title}
-          subtitle={this.props.event.date}
+          subtitle={
+            'Date: ' + Moment(this.props.event.date).format('DD MMM YYYY') +
+            ' at ' + Moment(this.props.event.time).format('hh:mm a')
+          }
           actAsExpander={true}
           showExpandableButton={true}
         />
         <CardActions>
-          <FlatButton label="Modify"
-          />
+
           <FlatButton label="Delete"
             onTouchTap={() => this.props.onDelete(this.props.event.id)}
           />

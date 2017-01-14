@@ -7,10 +7,8 @@ class App extends Component {
   render() {
     return (
       <div>
-        <AppBar
-          title="Scuba Events"
-        />
-        <Dashboard />
+        <AppBar title="Scuba Events"/>
+        {this.props.children}
       </div>
     );
   }

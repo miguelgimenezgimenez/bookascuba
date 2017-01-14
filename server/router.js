@@ -1,24 +1,22 @@
 const router = require('koa-router')();
 const controller = require('./controllers/auth.controller.js')
 const eventsController = require('./controllers/eventsController.js')
-
 const passport = require('koa-passport');
 
-// router.post('/signIn', controller.signIn);
 
-const basicAuth = function *(next) {
-  var ctx = this
-  yield passport.authenticate('basic', { session: false },
-    function * (err, user, info, status) {
-      delete user.password
-      ctx.user = user
-    }
-  ).call(this, next)
+const authenticate = (strategy) => function *(next) {
+  const cb = function * (err, user, info, status) {
+    delete user.password
+    this.user = user
+  }
+
+  yield passport.authenticate(strategy, { session: false }, cb.bind(this)).call(this, next)
   yield next
 }
 
 router
-  .post('/sign-in', basicAuth, controller.signIn)
+  .post('/sign-inb', authenticate('basic'), controller.signIn)
+  .post('/sign-in', authenticate('bearer'), controller.signIn)
   .get('/events', eventsController.getEvents)
   .post('/events', eventsController.postEvent)
   .delete('/deleteAll', eventsController.dropDb)

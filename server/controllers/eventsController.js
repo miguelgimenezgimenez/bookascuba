@@ -8,11 +8,11 @@ eventsController.getEvents = function * (next) {
 
 eventsController.postEvent = function * (next) {
   var eventData = this.request.body
-  console.log(Date.parse(eventData.date));
+  console.log('Date.parse: ', Date.parse(eventData.date));
   this.body = yield Event.create({
     title: eventData.title,
     details: eventData.details,
-    date: eventData.date,
+    date: Date.parse(eventData.date),
     time: eventData.time
   })
   this.status = 201
