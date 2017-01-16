@@ -15,8 +15,8 @@ const authenticate = (strategy) => function *(next) {
 }
 
 router
-  .post('/sign-inb', authenticate('basic'), controller.signIn)
-  .post('/sign-in', authenticate('bearer'), controller.signIn)
+  .post('/login', authenticate('basic'), controller.signIn)
+  .post('/user', authenticate('bearer'), controller.signIn)
   .get('/events', eventsController.getEvents)
   .post('/events', eventsController.postEvent)
   .delete('/deleteAll', eventsController.dropDb)

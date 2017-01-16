@@ -60,6 +60,7 @@ const mapDispatchToProps = (dispatch) => ({
   createEvent: (title, details, date, time) => dispatch(Actions.createEvent(title, details, date, time)),
   deleteAll: () => dispatch(Actions.deleteAll()),
   deleteEvent: (id) => dispatch(Actions.deleteEvent(id))
+  
 })
 
 export default connect(

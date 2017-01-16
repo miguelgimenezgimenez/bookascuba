@@ -1,9 +1,11 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { Router, Route, Link, browserHistory } from 'react-router';
+import { Router, IndexRoute, Route, Link, browserHistory } from 'react-router';
 import App from './App';
 import About from './containers/about'
 import Dashboard from './containers/Dashboard'
+import Authenticated from './containers/Authenticated'
+import LoginForm from './components/login'
 import './index.css';
 
 import { Provider } from 'react-redux'
@@ -24,14 +26,15 @@ ReactDOM.render(
   <Provider store={store}>
     <MuiThemeProvider>
 
-
         <Router history={browserHistory}>
           <Route path="/" component={ App }>
-            <Route path="/events" component={ Dashboard }/>
-            <Route path="/about" component={About}/>
+            <Route path="/login" component={ LoginForm }/>
+            <Route path="" component={ Authenticated }>
+              <IndexRoute component={Dashboard}/>
+              <Route path="/about" component={About}/>
+            </Route>
           </Route>
         </Router>
-
 
     </MuiThemeProvider>
   </Provider>,

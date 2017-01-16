@@ -1,6 +1,6 @@
 const API_ROOT = 'http://localhost:3001'
 
-const callApi = (endpoint, method='GET', data) => {
+const callApi = (endpoint, method='GET', data, authentication) => {
   const fullUrl = (endpoint.indexOf(API_ROOT) === -1) ? API_ROOT + endpoint : endpoint
 
   let body
@@ -11,7 +11,10 @@ const callApi = (endpoint, method='GET', data) => {
   return fetch(fullUrl, {
     method,
     body,
-    headers: { 'Content-Type': 'application/json' }
+    headers: {
+      'Content-Type': 'application/json' ,
+      'Authorization': authentication
+    }
   })
     .then(response =>
       response.json()
@@ -36,11 +39,16 @@ export default store => next => action => {
     return next(action)
   }
 
-  let { endpoint, method, data } = callAPI
+  let { endpoint, method, data, username, password } = callAPI
   const { type } = action
 
   if (typeof endpoint !== 'string') {
     throw new Error('Specify a string endpoint URL.')
+  }
+
+  let authentication
+  if (username && password) {
+    authentication = 'Basic ' + btoa(`${username}:${password}`)
   }
 
   const actionWith = data => {
@@ -51,7 +59,7 @@ export default store => next => action => {
 
   next(actionWith({ type: type + '_REQUEST' }))
 
-  return callApi(endpoint, method, data)
+  return callApi(endpoint, method, data, authentication)
     .then(
       response => {
         next(actionWith({

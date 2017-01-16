@@ -40,3 +40,14 @@ export const deleteEvent = (id) => ({
   },
   success: getEvents
 })
+
+export const login = (username, password) => ({
+  type: 'LOGIN',
+  [CALL_API]: {
+    endpoint: '/login',
+    method: 'POST',
+    username,
+    password
+  },
+  success: getEvents
+})
