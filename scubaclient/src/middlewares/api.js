@@ -49,6 +49,8 @@ export default store => next => action => {
   let authentication
   if (username && password) {
     authentication = 'Basic ' + btoa(`${username}:${password}`)
+  } else if (store.getState().user.token) {
+    authentication = 'Bearer ' + store.getState().user.token
   }
 
   const actionWith = data => {

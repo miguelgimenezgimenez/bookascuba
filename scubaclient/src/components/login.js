@@ -25,10 +25,6 @@ const style = {
   marginTop: 12,
 };
 
-
-
-
-
 class LoginForm extends Component {
 
   componentWillReceiveProps(nextProps) {
@@ -57,10 +53,12 @@ class LoginForm extends Component {
         <div style={{flex:0.5}}>
           <div style={{flex:0.5, marginLeft: 20, padding: 20}}>
             <Card className="login" style={LoginStyle}>
+              <form onSubmit={(e) => {e.preventDefault(); this.submitLogin()}}>
               <h2 className="card-heading">Admin Login</h2>
               <div className="field-line">
                 <TextField
                   floatingLabelText="username"
+                  ref="username"
                   name="username"
                   onChange={(event, username) => this.setState({username})}
                 />
@@ -72,6 +70,7 @@ class LoginForm extends Component {
                   type="password"
                   name="password"
                   onChange={(event, password) => this.setState({password})}
+
                 />
               </div>
 
@@ -82,8 +81,10 @@ class LoginForm extends Component {
                   style={style}
                   primary
                   onTouchTap={() => this.submitLogin()}
+
                 />
               </div>
+              </form>
             </Card>
           </div>
         </div>

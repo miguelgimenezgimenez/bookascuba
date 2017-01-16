@@ -6,11 +6,11 @@ import TimePicker from 'material-ui/TimePicker';
 import RaisedButton from 'material-ui/RaisedButton';
 
 
-const NewEventFormStyle={
+const NewEventFormStyle = {
   padding: 40,
   fontSize: 20,
   marginBottom: 15,
-}
+};
 
 const style = {
   marginRight: 15,

@@ -18,11 +18,7 @@ class Authenticated extends React.Component {
     console.log(location.pathname);
     if (!currentUser.token) {
       //redirect to  /login
-      this.props.router.push('/login')
-    } else if (location.pathname === '/login') {
-      // redirect to /
-      this.props.router.push('/')
-
+      this.props.router.push('/events')
     }
   }
 

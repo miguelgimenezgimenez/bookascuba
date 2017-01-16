@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux'
 import { Router, Route, Link } from 'react-router';
 import './App.css';
 // import Dashboard from './containers/Dashboard';
@@ -25,37 +26,40 @@ class Login extends Component {
   }
 }
 
-const Logged = (props) => (
-  <IconMenu
-    {...props}
-    iconButtonElement={
-      <IconButton><MoreVertIcon /></IconButton>
-    }
-    targetOrigin={{horizontal: 'right', vertical: 'top'}}
-    anchorOrigin={{horizontal: 'right', vertical: 'top'}}
-  >
-    <MenuItem
-      primaryText="Admin"
-      containerElement={<Link to="/events" />}
-    />
-    <MenuItem
-      primaryText="About"
-      containerElement={<Link to="/about" />}
-    />
-    <MenuItem primaryText="Sign out" />
-  </IconMenu>
-);
+const Logged = (props) => {
+  const { onLogout, ...rest } = props
+  return (
+    <IconMenu
+      {...rest}
+      iconButtonElement={
+        <IconButton><MoreVertIcon /></IconButton>
+      }
+      targetOrigin={{horizontal: 'right', vertical: 'top'}}
+      anchorOrigin={{horizontal: 'right', vertical: 'top'}}
+    >
+      <MenuItem
+        primaryText="Admin"
+        containerElement={<Link to="/" />}
+      />
+      <MenuItem
+        primaryText="User"
+        containerElement={<Link to="/events" />}
+      />
+      <MenuItem
+        primaryText="About"
+        containerElement={<Link to="/about" />}
+      />
+      <MenuItem
+        primaryText="Sign out"
+        onTouchTap={() => props.onLogout()}
+      />
+    </IconMenu>
+  )
+}
 
 Logged.muiName = 'IconMenu';
 
 class App extends Component {
-  state = {
-    logged: true,
-  };
-
-  handleChange = (event, logged) => {
-    this.setState({logged: logged});
-  };
 
   render() {
     return (
@@ -63,14 +67,10 @@ class App extends Component {
         <AppBar
           title="Book a Scuba"
           // iconElementLeft={<IconButton><NavigationClose /></IconButton>}
-          iconElementRight={this.state.logged ? <Logged /> : <Login />}
-        />
-        <Toggle
-          label="Logged"
-          defaultToggled={true}
-          onToggle={this.handleChange}
-          labelPosition="right"
-          style={{margin: 20}}
+          iconElementRight={this.props.user.token ?
+            <Logged
+              onLogout={() => this.props.logout()}/> :
+            <Login />}
         />
         {this.props.children}
       </div>
@@ -78,4 +78,12 @@ class App extends Component {
   }
 }
 
-export default App;
+const mapStateToProps = (state) => ({
+  user: state.user
+})
+
+const mapDispatchToProps = (dispatch) => ({
+  logout: () => dispatch({type: 'LOGOUT'})
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);

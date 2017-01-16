@@ -21,7 +21,8 @@ const events = (state = [], action) => {
     // case 'DELETE_ALL_SUCCESS':
     // return Object.assign({}, state, {loading: true})
     // break;
-
+    case 'LOGOUT':
+      return [];
     default:
 
   }
@@ -32,8 +33,9 @@ const events = (state = [], action) => {
 const user = (state = {}, action) => {
   switch (action.type) {
     case 'LOGIN_SUCCESS':
-    return {...action.response};
-
+      return {...action.response};
+    case 'LOGOUT':
+      return {}
   }
   return state;
 }
