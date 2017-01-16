@@ -26,7 +26,17 @@ const style = {
 };
 
 
+
+
+
 class LoginForm extends Component {
+
+  componentWillReceiveProps(nextProps) {
+    console.log('nextProps.user: ', nextProps.user);
+    console.log('this.props.user: ', this.props.user);
+    if (nextProps.user !== this.props.user) this.props.router.push('/')
+  }
+
 
   state = {
     username: "",
@@ -39,11 +49,6 @@ class LoginForm extends Component {
     console.log(this.props);
   }
 
-  handleKeyPress(target) {
-    if(target.charCode === 13){
-      () => this.submitLogin();
-    }
-  }
 
   render () {
     return <div>
@@ -67,7 +72,6 @@ class LoginForm extends Component {
                   type="password"
                   name="password"
                   onChange={(event, password) => this.setState({password})}
-                  onKeyPress={this.handleKeyPress}
                 />
               </div>
 

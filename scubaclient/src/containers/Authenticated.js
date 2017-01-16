@@ -15,6 +15,7 @@ class Authenticated extends React.Component {
 
   checkAuth(currentUser) {
     console.log('props changed', currentUser);
+    console.log(location.pathname);
     if (!currentUser.token) {
       //redirect to  /login
       this.props.router.push('/login')
