@@ -1,18 +1,15 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
-import { Field, reduxForm } from 'redux-form'
+import * as Actions from '../actions'
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
 import SelectField from 'material-ui/SelectField';
-import Slider from 'material-ui/Slider';
-import Checkbox from 'material-ui/Checkbox';
 import MenuItem from 'material-ui/MenuItem'
-import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card';
+import { Card, CardHeader, CardText } from 'material-ui/Card';
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
-import Divider from 'material-ui/Divider';
-import { AutoComplete } from 'material-ui'
 import Moment from 'moment';
-
+import Dialog from 'material-ui/Dialog';
+import FlatButton from 'material-ui/FlatButton';
 
 
 const NewEventFormStyle={
@@ -45,21 +42,43 @@ const containerStyle = {
 
 
 class UserBookForm extends Component {
-
   state = {
-    value: 1,
+    cert: 1,
+    open: false,
   };
 
-  submitAdd() {
-    const {title, details, date, time, name, mail, rent, cert} = this.state;
-    const data = {title, details, date, time, name, mail, rent, cert}
-    this.props.onCreate(data)
-  }
 
-  // handleChange = (event, index, value) => this.setState({value});
+  handleOpen = () => {
+    this.setState({open: true});
+  };
+
+  handleClose = () => {
+    this.setState({open: false});
+  };
+
+
+  submitBook() {
+  const eventId = this.props.event.id;
+    const {name, email, rent, cert} = this.state;
+    const data = {name, email, rent, cert}
+    this.props.onCreate(name, email, rent, cert, eventId)
+  }
 
 
   render() {
+    const actions = [
+          <FlatButton
+            label="Cancel"
+            primary={true}
+            onTouchTap={this.handleClose}
+          />,
+          <FlatButton
+            label="Submit"
+            primary={true}
+            onTouchTap={() => {this.submitBook(); this.handleClose()}}
+          />,
+        ];
+
     return (
       <div style={containerStyle}>
         <div style={{flex:0.5}}>
@@ -79,12 +98,11 @@ class UserBookForm extends Component {
           </Card>
 
         <Card style={NewEventFormStyle}>
-          <form>
+          <form onSubmit={(e) => {e.preventDefault(); this.submitBook()}}>
             <div>
               <TextField name="name"
                 hintText="Name"
                 floatingLabelText="Name"
-                ref="name" withRef
                 onChange={(event, name) => this.setState({name})}
               />
             </div>
@@ -98,7 +116,8 @@ class UserBookForm extends Component {
             <div>
               <SelectField
                 floatingLabelText="Certification"
-                onChange={(event, cert) => this.setState({cert})}
+                value={this.state.cert}
+                onChange={(event, index, cert) => this.setState({cert})}
                 autoWidth={true}
               >
                 <MenuItem value={1} primaryText="Open Water Diver" />
@@ -127,12 +146,20 @@ class UserBookForm extends Component {
                 </RadioButtonGroup>
               </div>
             </div>
+
             <div>
-              <RaisedButton
-                label="Submit"
+              <RaisedButton label="ok"
                 primary={true}
-                type="submit">
-              </RaisedButton>
+                onTouchTap={this.handleOpen} />
+              <Dialog
+                title="THANK YOU FOR CODING WITH US"
+                actions={actions}
+                modal={true}
+                open={this.state.open}
+              >
+                Please confirm your booking for {Moment(this.props.event.date).format('DD MMM YYYY') +
+                ' at ' + Moment(this.props.event.time).format('hh:mm a')}
+              </Dialog>
             </div>
           </form>
         </Card>
@@ -140,6 +167,11 @@ class UserBookForm extends Component {
     </div>
     )
   }
+}
+
+
+UserBookForm.propTypes = {
+  onCreate: React.PropTypes.func.isRequired,
 }
 
 const mapStateToProps = (state, ownProps) => {
@@ -151,7 +183,7 @@ const mapStateToProps = (state, ownProps) => {
 }
 
 const mapDispatchToProps = (dispatch) => ({
-
+  onCreate: (name, email, rent, cert, eventId) => dispatch(Actions.createBook(name, email, rent, cert, eventId)),
 })
 
 export default connect(

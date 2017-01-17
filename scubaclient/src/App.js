@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
-import { Router, Route, Link } from 'react-router';
+import { Link } from 'react-router';
 import './App.css';
 // import Dashboard from './containers/Dashboard';
 import AppBar from 'material-ui/AppBar';
@@ -8,10 +8,7 @@ import IconButton from 'material-ui/IconButton';
 import IconMenu from 'material-ui/IconMenu';
 import MenuItem from 'material-ui/MenuItem';
 import FlatButton from 'material-ui/FlatButton';
-import Toggle from 'material-ui/Toggle';
 import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
-import NavigationClose from 'material-ui/svg-icons/navigation/close';
-import LoginForm from './components/login'
 
 class Login extends Component {
   static muiName = 'FlatButton';

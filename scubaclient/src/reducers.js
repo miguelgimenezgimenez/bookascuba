@@ -35,13 +35,25 @@ const user = (state = {}, action) => {
     case 'LOGIN_SUCCESS':
       return {...action.response};
     case 'LOGOUT':
-      return {}
+      return {};
+    default:
+  }
+  return state;
+}
+
+const books = (state = [], action) => {
+  switch (action.type) {
+    case 'GET_BOOKS_SUCCESS':
+      return [...action.response];
+    case 'LOGOUT':
+      return [];
+    default:
   }
   return state;
 }
 
 const reducers = combineReducers({
-  events, user
+  events, user, books
 
 })
 
