@@ -1,6 +1,7 @@
 import React from 'react'
 import { Card, CardTitle, CardActions, CardHeader, CardText } from 'material-ui/Card'
 import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import Moment from 'moment'
 
 const eventStyle={
@@ -33,7 +34,9 @@ export default class Book extends React.Component {
         />
         <CardActions>
 
-          <FlatButton label="Delete"
+          <RaisedButton
+            secondary={true}
+            label="Delete Booking"
             onTouchTap={() => this.props.onDelete(this.props.book.id)}
           />
         </CardActions>

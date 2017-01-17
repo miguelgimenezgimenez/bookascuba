@@ -18,6 +18,7 @@ const LoginStyle={
   padding: 40,
   fontSize: 20,
   marginBottom: 15,
+  textAlign: 'center'
 }
 
 const style = {
@@ -50,8 +51,8 @@ class LoginForm extends Component {
     return <div>
 
       <div style={containerStyle}>
-        <div style={{flex:0.5}}>
-          <div style={{flex:0.5, marginLeft: 20, padding: 20}}>
+
+          <div style={{margin: 'auto', padding: 20}}>
             <Card className="login" style={LoginStyle}>
               <form onSubmit={(e) => {e.preventDefault(); this.submitLogin()}}>
               <h2 className="card-heading">Admin Login</h2>
@@ -87,7 +88,7 @@ class LoginForm extends Component {
               </form>
             </Card>
           </div>
-        </div>
+
       </div>
 
 

@@ -1,6 +1,9 @@
 import React from 'react'
 import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card'
 import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
+import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
+
 import Moment from 'moment'
 
 
@@ -26,13 +29,16 @@ export default class Event extends React.Component {
         />
         <CardActions>
 
-          <FlatButton label="Delete"
-            onTouchTap={() => this.props.onDelete(this.props.event.id)}
-          />
         </CardActions>
         <CardText expandable={true}>
           {this.props.event.details}
         </CardText>
+
+        <RaisedButton
+          label="Delete Event"
+          secondary={true}
+          onTouchTap={() => this.props.onDelete(this.props.event.id)}
+        />
       </Card>
     )
   }
@@ -40,5 +46,6 @@ export default class Event extends React.Component {
 
 Event.propTypes = {
   event: React.PropTypes.object.isRequired,
-  onDelete: React.PropTypes.func.isRequired
+  onDelete: React.PropTypes.func.isRequired,
+  book: React.PropTypes.object.isRequired,
 }

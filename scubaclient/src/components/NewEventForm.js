@@ -13,7 +13,7 @@ const NewEventFormStyle = {
 };
 
 const style = {
-  marginRight: 15,
+  marginRight: 25,
   marginTop: 12,
 };
 
@@ -39,7 +39,7 @@ class NewEventForm extends Component {
   render() {
     return <div>
       <Card style={NewEventFormStyle}>
-        <h2>Dive Manager</h2>
+        <h2 style={{textAlign: 'center'}}>Dive Manager</h2>
           <TextField
             hintText="Write the title"
             floatingLabelText="Dive Title"

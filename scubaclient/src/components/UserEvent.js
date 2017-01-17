@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card';
-import FlatButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/FlatButton';
 import Moment from 'moment';
 
 const eventStyle={
@@ -26,7 +26,9 @@ export default class UserEvent extends React.Component {
         />
         <CardActions>
 
-          <FlatButton label="Book"
+          <RaisedButton
+            label="Book"
+            primary={true}
             onTouchTap={() => this.props.onBook(this.props.event.id)}
             containerElement={<Link to={`/bookform/${this.props.event.id}`} />}
           />

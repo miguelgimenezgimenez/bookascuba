@@ -4,13 +4,16 @@ import * as Actions from '../actions'
 import Event from '../components/Event'
 import Book from '../components/Book'
 import NewEventForm from '../components/NewEventForm'
-import Divider from 'material-ui/Divider';
+import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card'
+
 
 const containerStyle = {
   margin: '0 auto',
   width: 960,
   padding: 20,
-  display: 'flex'
+  display: 'flex',
+  flexDirection: 'column'
+
 }
 
 const bookStyle = {
@@ -47,8 +50,11 @@ createBook(data) {
             event={event}
             onDelete={(id) => this.props.deleteEvent(id)}
           />
-          <Divider />
-          {this.props.books.filter(book => book.eventId === event.id).map(b => b.name).join()}
+          <Card>
+            <CardHeader
+              title={this.props.books.filter(book => book.eventId === event.id).map(b => b.name).join(", ")}
+            />
+          </Card>
         </div>
       )
     }
@@ -66,19 +72,21 @@ createBook(data) {
 
   render() {
     return <div style={containerStyle}>
-      <div style={{flex:0.5}}>
-        <div style={{flex:0.5, marginLeft: 20, marginRight:20, padding: 20}}>
-          <NewEventForm
-            onCreate={(data) => this.createEvent(data)}
-            deleteAll={() => this.props.deleteAll()}
-          />
-        </div>
-        <h1>Events</h1>
-        {this.renderEvents()}
+      <div style={{width: 350, margin: '0 auto'}}>
+        <NewEventForm
+          onCreate={(data) => this.createEvent(data)}
+          deleteAll={() => this.props.deleteAll()}
+        />
       </div>
-      <div style={{flex:0.5, marginLeft: 20, marginRight:20, padding: 20}}>
-        <h1>Bookings</h1>
-        {this.renderBooks()}
+      <div style={{display: 'flex', flexDirection: 'row'}}>
+        <div style={{flex:1, marginLeft: 20, marginRight:20, padding: 20}}>
+          <h1 style={{textAlign: 'center'}}>Events</h1>
+          {this.renderEvents()}
+        </div>
+        <div style={{flex:1, marginLeft: 20, marginRight:20, padding: 20}}>
+          <h1 style={{textAlign: 'center'}}>Bookings</h1>
+          {this.renderBooks()}
+        </div>
       </div>
     </div>
   }

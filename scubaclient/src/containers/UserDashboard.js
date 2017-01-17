@@ -4,7 +4,7 @@ import * as Actions from '../actions'
 import UserEvent from '../components/UserEvent'
 
 const containerStyle = {
-  margin: '0 auto',
+  margin: 'auto',
   width: 960,
   padding: 20,
   display: 'flex'
@@ -32,7 +32,8 @@ class UserDashboard extends React.Component {
 
   render() {
     return <div style={containerStyle}>
-      <div style={{flex:0.5, marginLeft: 20, padding: 20}}>
+      <div style={{margin: 'auto', padding: 20}}>
+        <h1 style={{textAlign: 'center'}}>EVENTS</h1>
         {this.renderEvents()}
       </div>
     </div>
