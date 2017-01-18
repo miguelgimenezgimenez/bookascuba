@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router';
 import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card';
-import RaisedButton from 'material-ui/FlatButton';
+import RaisedButton from 'material-ui/RaisedButton';
 import Moment from 'moment';
 
 const eventStyle={
@@ -9,6 +9,11 @@ const eventStyle={
   fontSize: 20,
   marginBottom: 15,
 }
+
+const style = {
+  display: 'flex',
+  marginTop: 12,
+};
 
 
 export default class UserEvent extends React.Component {
@@ -24,18 +29,17 @@ export default class UserEvent extends React.Component {
           actAsExpander={true}
           showExpandableButton={true}
         />
-        <CardActions>
-
-          <RaisedButton
-            label="Book"
-            primary={true}
-            onTouchTap={() => this.props.onBook(this.props.event.id)}
-            containerElement={<Link to={`/bookform/${this.props.event.id}`} />}
-          />
-        </CardActions>
         <CardText expandable={true}>
           {this.props.event.details}
         </CardText>
+
+        <RaisedButton
+          style={style}
+          label="Book"
+          primary={true}
+          onTouchTap={() => this.props.onBook(this.props.event.id)}
+          containerElement={<Link to={`/bookform/${this.props.event.id}`} />}
+        />
       </Card>
     )
   }

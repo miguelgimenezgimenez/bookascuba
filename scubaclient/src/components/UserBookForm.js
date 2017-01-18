@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux';
+import { Link } from 'react-router';
 import * as Actions from '../actions'
 import {RadioButton, RadioButtonGroup} from 'material-ui/RadioButton';
 import SelectField from 'material-ui/SelectField';
@@ -67,15 +68,16 @@ class UserBookForm extends Component {
 
   render() {
     const actions = [
-          <FlatButton
+          <RaisedButton
             label="Cancel"
-            primary={true}
+            secondary={true}
             onTouchTap={this.handleClose}
           />,
-          <FlatButton
+          <RaisedButton
             label="Submit"
             primary={true}
             onTouchTap={() => {this.submitBook(); this.handleClose()}}
+            containerElement={<Link to="/events" />}
           />,
         ];
 
@@ -147,19 +149,30 @@ class UserBookForm extends Component {
               </div>
             </div>
 
-            <div>
-              <RaisedButton label="ok"
+            <div >
+              <RaisedButton
+                style={{marginRight: 20}}
+                label="ok"
                 primary={true}
                 onTouchTap={this.handleOpen} />
-              <Dialog
-                title="THANK YOU FOR CODING WITH US"
-                actions={actions}
-                modal={true}
-                open={this.state.open}
-              >
-                Please confirm your booking for {Moment(this.props.event.date).format('DD MMM YYYY') +
-                ' at ' + Moment(this.props.event.time).format('hh:mm a')}
-              </Dialog>
+                <Dialog
+                  title="THANK YOU FOR CODING WITH US"
+                  actions={actions}
+                  modal={true}
+                  open={this.state.open}
+                >
+                  Please confirm your booking for {Moment(this.props.event.date).format('DD MMM YYYY') +
+                  ' at ' + Moment(this.props.event.time).format('hh:mm a')}
+                </Dialog>
+              <RaisedButton
+                style={{margin: 'auto', padding: 20}}
+                type="submit"
+                label="Cancel"
+                style={style}
+                primary
+                containerElement={<Link to="/events" />}
+                // onTouchTap={() => this.submitLogin()}
+              />
             </div>
           </form>
         </Card>

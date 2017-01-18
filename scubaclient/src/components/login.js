@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux'
 
+import { Link } from 'react-router';
 import { Card }     from 'material-ui/Card';
 import RaisedButton from 'material-ui/RaisedButton';
 import TextField    from 'material-ui/TextField';
@@ -78,11 +79,18 @@ class LoginForm extends Component {
               <div className="button-line">
                 <RaisedButton
                   type="submit"
+                  label="Cancel"
+                  style={style}
+                  primary
+                  containerElement={<Link to="/events" />}
+                  // onTouchTap={() => this.submitLogin()}
+                />
+                <RaisedButton
+                  type="submit"
                   label="Log in"
                   style={style}
                   primary
                   onTouchTap={() => this.submitLogin()}
-
                 />
               </div>
               </form>

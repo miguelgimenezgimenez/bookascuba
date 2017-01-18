@@ -1,7 +1,9 @@
 const router = require('koa-router')();
+const passport = require('koa-passport');
 const controller = require('./controllers/auth.controller.js')
 const eventsController = require('./controllers/eventsController.js')
-const passport = require('koa-passport');
+const apptController = require('./controllers/apptController.js')
+
 
 
 const authenticate = (strategy) => function *(next) {
@@ -22,10 +24,11 @@ router
   .delete('/deleteAll', eventsController.dropDb)
   .delete('/events/:id', eventsController.deleteEvent)
   .put('/events', eventsController.updateEvent)
+  .get('/appointments', apptController.getAppts)
+  .post('/appointments', apptController.postAppt)
+  .delete('/appointments/:id', apptController.deleteAppt)
+  .delete('/appointments/deleteAll', apptController.dropDb)
 
 
-// .post('/event',
-//   basicAuth,
-//   eventsController.create)
 
 module.exports = router;

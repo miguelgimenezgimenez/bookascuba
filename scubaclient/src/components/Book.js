@@ -23,7 +23,7 @@ export default class Book extends React.Component {
     return (
       <Card style={eventStyle}>
         <CardHeader
-          title={this.props.book.name + ' ' + this.props.book.email}
+          title={this.props.book.name + ' - ' + this.props.book.email}
           subtitle={this.props.book.email}
           subtitle={
             'Date: ' + Moment(this.props.event.date).format('DD MMM YYYY') +
