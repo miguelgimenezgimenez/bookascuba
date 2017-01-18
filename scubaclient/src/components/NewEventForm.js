@@ -23,12 +23,13 @@ class NewEventForm extends Component {
     title: "",
     details: "",
     date: "",
-    time: ""
+    time: "",
+    image: ""
   }
 
   submitAdd() {
-    const {title, details, date, time} = this.state;
-    const data = {title, details, date, time}
+    const {title, details, date, time, image} = this.state;
+    const data = {title, details, date, time, image}
     this.props.onCreate(data)
   }
 
@@ -59,6 +60,11 @@ class NewEventForm extends Component {
           autoOk={true}
           onChange={(event, time) => this.setState({time})}
         />
+        <TextField
+          hintText="Add an image url"
+          floatingLabelText="Image"
+          onChange={(event, image) => this.setState({image})}
+        /><br />
         <div>
           <RaisedButton label="Add Dive"
           primary={true}

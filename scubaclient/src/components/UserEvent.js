@@ -1,13 +1,14 @@
 import React from 'react';
 import { Link } from 'react-router';
-import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card';
+import {Card, CardActions, CardHeader, CardMedia, CardTitle, CardText} from 'material-ui/Card';
+import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import Moment from 'moment';
 
 const eventStyle={
   padding: 40,
   fontSize: 20,
-  marginBottom: 15,
+  marginBottom: 240,
 }
 
 const style = {
@@ -19,28 +20,39 @@ const style = {
 export default class UserEvent extends React.Component {
   render() {
     return (
-      <Card style={eventStyle}>
+      <Card style={this.props.style}>
         <CardHeader
-          title={this.props.event.title}
-          subtitle={
-            'Date: ' + Moment(this.props.event.date).format('DD MMM YYYY') +
-            ' at ' + Moment(this.props.event.time).format('hh:mm a')
-          }
-          actAsExpander={true}
-          showExpandableButton={true}
+          title="Vanas Dive"
+          subtitle="Diving Center"
+          avatar="http://www.vanasdive.com/wp-content/uploads/caballitu-bola-home.png"
         />
-        <CardText expandable={true}>
+        <CardMedia
+          overlay={<CardTitle
+            title={this.props.event.title}
+            subtitle={
+              'Date: ' + Moment(this.props.event.date).format('DD MMM YYYY') +
+              ' at ' + Moment(this.props.event.time).format('hh:mm a')
+            } />}
+        >
+          <img src={this.props.event.image} />
+        </CardMedia>
+
+
+        <CardText>
           {this.props.event.details}
         </CardText>
 
-        <RaisedButton
-          style={style}
-          label="Book"
-          primary={true}
-          onTouchTap={() => this.props.onBook(this.props.event.id)}
-          containerElement={<Link to={`/bookform/${this.props.event.id}`} />}
-        />
-      </Card>
+        <CardActions>
+          <RaisedButton
+            style={style}
+            label="Book"
+            primary={true}
+            onTouchTap={() => this.props.onBook(this.props.event.id)}
+            containerElement={<Link to={`/bookform/${this.props.event.id}`} />}
+          />
+        </CardActions>
+    </Card>
+
     )
   }
 }

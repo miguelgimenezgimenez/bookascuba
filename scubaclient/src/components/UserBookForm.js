@@ -10,7 +10,6 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import Moment from 'moment';
 import Dialog from 'material-ui/Dialog';
-import FlatButton from 'material-ui/FlatButton';
 
 
 const NewEventFormStyle={
@@ -30,11 +29,10 @@ const styles = {
 
 const style = {
   marginRight: 15,
-  marginTop: 12,
 };
 
 const containerStyle = {
-  margin: '0 auto',
+  margin: 'auto',
   width: 960,
   padding: 20,
   display: 'flex'
@@ -82,8 +80,8 @@ class UserBookForm extends Component {
         ];
 
     return (
-      <div style={containerStyle}>
-        <div style={{flex:0.5}}>
+      <div style={{width: 500, margin: '0 auto'}}>
+        <div style={{flex:0.5, marginTop: 20}}>
           <Card style={NewEventFormStyle}>
             <CardHeader
               title={this.props.event.title}
@@ -122,26 +120,26 @@ class UserBookForm extends Component {
                 onChange={(event, index, cert) => this.setState({cert})}
                 autoWidth={true}
               >
-                <MenuItem value={1} primaryText="Open Water Diver" />
-                <MenuItem value={2} primaryText="Advanced Open Water" />
-                <MenuItem value={3} primaryText="Rescue Diver" />
-                <MenuItem value={4} primaryText="Instructor" />
+                <MenuItem value={'OWD'} primaryText="Open Water Diver" />
+                <MenuItem value={'AOWD'} primaryText="Advanced Open Water" />
+                <MenuItem value={'Rescue'} primaryText="Rescue Diver" />
+                <MenuItem value={'Instructor'} primaryText="Instructor" />
               </SelectField>
             </div>
             <div style={style}>
               <div>
                 <RadioButtonGroup
                   name="renting"
-                  defaultSelected="rentGear"
+                  // defaultSelected="rentGear"
                   onChange={(event, rent) => this.setState({rent})}
                   >
                   <RadioButton
-                    value="rentGear"
+                    value="YES"
                     label="I need to rent diving equipment"
                     style={styles.radioButton}
                   />
                   <RadioButton
-                    value="ownGear"
+                    value="NO"
                     label="I have my own equipment"
                     style={styles.radioButton}
                   />
@@ -165,7 +163,6 @@ class UserBookForm extends Component {
                   ' at ' + Moment(this.props.event.time).format('hh:mm a')}
                 </Dialog>
               <RaisedButton
-                style={{margin: 'auto', padding: 20}}
                 type="submit"
                 label="Cancel"
                 style={style}

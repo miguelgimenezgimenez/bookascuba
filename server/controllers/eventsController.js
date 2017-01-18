@@ -13,7 +13,8 @@ eventsController.postEvent = function * (next) {
     title: eventData.title,
     details: eventData.details,
     date: Date.parse(eventData.date),
-    time: eventData.time
+    time: eventData.time,
+    image: eventData.image
   })
   this.status = 201
 }
@@ -41,7 +42,8 @@ eventsController.updateEvent = function * (next) {
       title: eventData.title,
       details: eventData.details,
       date: eventData.date,
-      time: eventData.time
+      time: eventData.time,
+      image: eventData.image
     },
     {
       id: eventData.id

@@ -9,7 +9,7 @@ import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card'
 
 const containerStyle = {
   margin: '0 auto',
-  width: 960,
+  width: 1000,
   padding: 20,
   display: 'flex',
   flexDirection: 'column'
@@ -28,8 +28,8 @@ class Dashboard extends React.Component {
   }
 
 createEvent(data) {
-  const {title, details, date, time} = data
-  this.props.createEvent(title, details, date, time)
+  const {title, details, date, time, image} = data
+  this.props.createEvent(title, details, date, time, image)
 }
 
 createBook(data) {
@@ -100,7 +100,7 @@ const mapStateToProps = (state) => ({
 const mapDispatchToProps = (dispatch) => ({
   getEvents: () => dispatch(Actions.getEvents()),
   getBooks: () => dispatch(Actions.getBooks()),
-  createEvent: (title, details, date, time) => dispatch(Actions.createEvent(title, details, date, time)),
+  createEvent: (title, details, date, time, image) => dispatch(Actions.createEvent(title, details, date, time, image)),
   deleteAll: () => dispatch(Actions.deleteAll()),
   deleteEvent: (id) => dispatch(Actions.deleteEvent(id)),
   deleteBook: (id) => dispatch(Actions.deleteBook(id))

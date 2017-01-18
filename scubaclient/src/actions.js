@@ -8,7 +8,7 @@ export const getEvents = () => ({
   })
 
 
-export const createEvent = (title, details, date, time) => ({
+export const createEvent = (title, details, date, time, image) => ({
   type: 'CREATE_EVENT',
   [CALL_API]: {
     endpoint: '/events',
@@ -17,7 +17,8 @@ export const createEvent = (title, details, date, time) => ({
       title,
       details,
       date,
-      time
+      time,
+      image
     },
   },
   success: getEvents

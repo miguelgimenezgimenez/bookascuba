@@ -1,6 +1,5 @@
 import React from 'react'
-import { Card, CardTitle, CardActions, CardHeader, CardText } from 'material-ui/Card'
-import FlatButton from 'material-ui/FlatButton';
+import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card'
 import RaisedButton from 'material-ui/RaisedButton';
 import Moment from 'moment'
 
@@ -24,7 +23,6 @@ export default class Book extends React.Component {
       <Card style={eventStyle}>
         <CardHeader
           title={this.props.book.name + ' - ' + this.props.book.email}
-          subtitle={this.props.book.email}
           subtitle={
             'Date: ' + Moment(this.props.event.date).format('DD MMM YYYY') +
             ' at ' + Moment(this.props.event.time).format('hh:mm a')
@@ -41,7 +39,7 @@ export default class Book extends React.Component {
           />
         </CardActions>
         <CardText expandable={true}>
-          {this.props.book.cert + ' ' + this.props.book.rent}
+          {'Level: ' + this.props.book.cert + ' - Renting: ' + this.props.book.rent}
         </CardText>
       </Card>
     )

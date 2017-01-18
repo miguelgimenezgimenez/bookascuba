@@ -1,14 +1,11 @@
 import React from 'react'
-import { Card, CardActions, CardHeader, CardText } from 'material-ui/Card'
-import FlatButton from 'material-ui/FlatButton';
+import { Card, CardMedia, CardTitle, CardHeader, CardText } from 'material-ui/Card'
 import RaisedButton from 'material-ui/RaisedButton';
-import {Table, TableBody, TableHeader, TableHeaderColumn, TableRow, TableRowColumn} from 'material-ui/Table';
-
 import Moment from 'moment'
 
 
 const eventStyle={
-  padding: 40,
+  padding: 20,
   fontSize: 20,
   marginBottom: 15,
 }
@@ -24,14 +21,23 @@ export default class Event extends React.Component {
             'Date: ' + Moment(this.props.event.date).format('DD MMM YYYY') +
             ' at ' + Moment(this.props.event.time).format('hh:mm a')
           }
+        />
+        <CardHeader
           actAsExpander={true}
           showExpandableButton={true}
         />
-        <CardActions>
-
-        </CardActions>
         <CardText expandable={true}>
+          <CardMedia
+            // overlay={<CardTitle title={this.props.event.title} subtitle={
+            //   'Date: ' + Moment(this.props.event.date).format('DD MMM YYYY') +
+            //   ' at ' + Moment(this.props.event.time).format('hh:mm a')
+            // } />}
+          >
+            <img src={this.props.event.image} />
+          </CardMedia>
+
           {this.props.event.details}
+
         </CardText>
 
         <RaisedButton
